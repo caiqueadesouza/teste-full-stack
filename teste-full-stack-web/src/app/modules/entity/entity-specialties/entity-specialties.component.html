@@ -1,0 +1,23 @@
+<div *ngIf="specialties.length <= 5 else showMore">
+    <span *ngFor="let item of specialties; let last = last">
+        {{ item.name }}
+        <span *ngIf="!last">, </span>
+    </span>
+</div>
+<ng-template #showMore>
+    <span *ngFor="let item of specialties.slice(0, 5); let last = last">
+        {{ item.name }}
+        <span *ngIf="!last">, </span>
+    </span>
+    <span *ngIf="specialties.length > 5">
+        +{{ specialties.length - 5 }}
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>add</mat-icon>
+        </button>
+    </span>
+    <mat-menu #menu="matMenu" yPosition="above">
+        <button mat-menu-item *ngFor="let item of specialties.slice(5)">
+            {{ item.name }}
+        </button>
+    </mat-menu>
+</ng-template>

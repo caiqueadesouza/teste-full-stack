@@ -1,0 +1,19 @@
+<div class="flex items-center mb-4">
+    <p class="font-bold text-2xl">{{ errorData.title }}</p>
+    <mat-icon class="ml-2" aria-label="Information icon">info</mat-icon>
+</div>
+
+<p class="my-2 text-xl">Status: {{ errorData.error.statusCode }}</p>
+
+<div class="mt-2">
+    <ul>
+        <li *ngFor="let errorMessage of errorData.error.message" role="alert">{{ errorMessage }}</li>
+    </ul>
+    {{errorData.error.message}}
+</div>
+
+<div class="flex justify-end mt-3">
+    <button class="text-white bg-blue-700 text-lg px-3 py-2" [matDialogClose]="" aria-label="Close button">
+        <span>OK</span>
+    </button>
+</div>

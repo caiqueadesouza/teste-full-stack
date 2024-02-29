@@ -1,0 +1,59 @@
+<div class="flex flex-col flex-auto min-w-0" *ngIf="entity && !isLoading">
+
+    <div class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 sm:px-10">
+        <div class="flex-1 min-w-0">
+            <app-header-page [title]="'Visualizar entidade'"></app-header-page>
+        </div>
+        <div class="flex">
+            <button class="text-white bg-blue-700 text-lg px-3 py-2" [routerLink]="['../update', entity.id]">
+                <span>Editar</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="flex-auto p-6 sm:p-10">
+        <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
+            <div class="col-span-1 p-4">
+                <p class="font-bold text-lg">Nome fantasia</p>
+                <p>{{entity.fantasy_name}}</p>
+            </div>
+            <div class="col-span-1 p-4">
+                <p class="font-bold text-lg">Razão social</p>
+                <p>{{entity.corporate_reason}}</p>
+            </div>
+            <div class="col-span-1  p-4">
+                <p class="font-bold text-lg">CNPJ</p>
+                <p>{{entity.cnpj}}</p>
+            </div>
+        </div>
+
+        <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
+            <div class="col-span-1 p-4">
+                <p class="font-bold text-lg">Especialidades</p>
+                <p><app-specialties [specialties]="entity.specialties"></app-specialties></p>
+            </div>
+            <div class="col-span-1 p-4">
+                <p class="font-bold text-lg">Regional</p>
+                <p>{{ entity.regional?.name }}</p>
+            </div>
+            <div class="col-span-1 p-4">
+                <p class="font-bold text-lg">Data inauguração</p>
+                <p>{{entity.opening_date | date:'dd/MM/yyyy'}}</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-4">
+            <div class="col-span-1 p-4">
+                <p class="font-bold text-lg">Ativo</p>
+                <app-status [status]="entity.active"></app-status>
+            </div>
+        </div>
+
+        <div class="flex justify-end mt-3">
+            <button class="text-dark border-2 bg-transparent text-lg px-3 py-2" [routerLink]="['../']">
+                <span>Voltar</span>
+            </button>
+        </div>
+    </div>
+
+</div>

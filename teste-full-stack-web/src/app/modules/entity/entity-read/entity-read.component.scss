@@ -1,0 +1,38 @@
+.table-container {
+    overflow-x: auto;
+}
+
+@media screen and (max-width: 600px) {
+    .table-container {
+        display: block;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        display: block;
+        text-align: left;
+        border-bottom: 1px solid #fff;
+    }
+
+    th {
+        display: none;
+    }
+
+    td {
+        border: none;
+        position: relative;
+    }
+
+    td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        padding: 0;
+        font-weight: bold;
+    }
+}

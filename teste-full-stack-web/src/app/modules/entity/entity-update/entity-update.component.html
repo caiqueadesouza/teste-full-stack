@@ -1,0 +1,99 @@
+<div class="flex flex-col flex-auto min-w-0">
+
+    <div class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 sm:px-10">
+        <div class="flex-1 min-w-0">
+            <app-header-page [title]="'Editar entidade'"></app-header-page>
+        </div>
+        <div class="flex">
+            <button class="text-white bg-orange-700 text-lg px-3 py-2" (click)="delete()">
+                <span>Excluir</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="flex-auto p-6 sm:p-10">
+
+        <app-alerta [alert]="alert.message" *ngIf="showAlert"></app-alerta>
+
+        <form class="mt-8" [formGroup]="form" #signInNgForm="ngForm" (ngSubmit)="onSubmit()">
+
+            <div class="grid md:grid-cols-2 sm:grid-cols-1 gap-x-3">
+                <mat-form-field class="w-full">
+                    <mat-label>Nome Fantasia</mat-label>
+                    <input matInput [formControlName]="'fantasy_name'" [placeholder]="'Nome Fantasia'">
+                    <mat-error *ngIf="form.get('fantasy_name').hasError('required')">Digite o nome fantasia</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="w-full">
+                    <mat-label>Razão Social</mat-label>
+                    <input matInput [formControlName]="'corporate_reason'" [placeholder]="'Razão Social'">
+                    <mat-error *ngIf="form.get('corporate_reason').hasError('required')">Digite a razão
+                        social</mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-x-3">
+                <mat-form-field class="w-full">
+                    <mat-label>CNPJ</mat-label>
+                    <input matInput [formControlName]="'cnpj'" [placeholder]="'CNPJ'">
+                    <mat-error *ngIf="form.get('cnpj').hasError('required')">Digite o CNPJ</mat-error>
+                    <mat-error *ngIf="form.get('cnpj').hasError('invalidCnpj')">Digite um CNPJ valido</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="w-full">
+                    <mat-label>Regional</mat-label>
+                    <mat-select [formControl]="form.get('regionalId')">
+                        <mat-option value=""></mat-option>
+                        <mat-option *ngFor="let regiao of regioes" [value]="regiao.id">
+                            {{ regiao.name }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="form.get('regionalId').hasError('required')">Informe a região</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Especialidades</mat-label>
+                    <mat-select [formControl]="form.get('specialties')" [compareWith]="seletedSpecialties" multiple>
+                        <mat-select-trigger>
+                            {{ getSelectedSpecialtiesNames() || '' }}
+                        </mat-select-trigger>
+                        <mat-option *ngFor="let topping of specialtiesList" [value]="topping">
+                            {{ topping.name }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="form.get('specialties').hasError('requiredSpecialties')">
+                        Informe pelo menos 5 especialidades
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="grid md:grid-cols-3 sm:grid-cols-2 gap-x-3">
+                <mat-form-field class="w-full">
+                    <mat-label>Data inauguração</mat-label>
+                    <input matInput [matDatepicker]="picker3" [formControlName]="'opening_date'">
+                    <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                    <mat-datepicker #picker3></mat-datepicker>
+                    <mat-error *ngIf="form.get('opening_date').hasError('required')">Informe a data de
+                        inauguração</mat-error>
+                </mat-form-field>
+
+                <div class="flex items-center">
+                    <mat-checkbox [formControlName]="'active'"></mat-checkbox>
+                    <span>Ativo</span>
+                </div>
+            </div>
+
+            <div class="flex justify-end mt-3">
+                <button class="text-dark border-2 bg-transparent text-lg px-3 py-2" type="button"
+                    [routerLink]="['../../../entidades']">
+                    <span>Cancelar</span>
+                </button>
+                <button class="ml-3 text-white bg-blue-700 text-lg px-3 py-2" type="submit">
+                    <span>Editar</span>
+                </button>
+            </div>
+
+        </form>
+    </div>
+
+</div>

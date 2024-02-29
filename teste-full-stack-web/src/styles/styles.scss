@@ -1,0 +1,27 @@
+/* ----------------------------------------------------------------------------------------------------- */
+/*  @ Import/write your custom styles here.
+/*  @ Styles from this file will override 'vendors.scss' and Fuse's base styles.
+/* ----------------------------------------------------------------------------------------------------- */
+.mat-mdc-snack-bar-container {
+    --mdc-snackbar-container-color: #28a745 !important;
+}
+
+.msg-success {
+    background-color: #28a745 !important;
+    color: #fff;
+    z-index: 99;
+}
+
+.msg-error {
+    background-color: #dc3545 !important;
+    color: #fff;
+    z-index: 99;
+}
+
+.mat-simple-snackbar {
+    white-space: pre-line;
+}
+
+.mat-simple-snackbar-action button {
+    color: #fff;
+}
