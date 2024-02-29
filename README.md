@@ -3,5 +3,4 @@
 
  Usuário: joao@gmail.com
  Senha: 123456
- Usuário: maria@gmail.com
- Senha: 123456
+
